@@ -23,7 +23,7 @@ def describeCats(theCats):
 if __name__ == '__main__':
     myCats = []
     # First cat
-    myCats.append(defineCat("Moritz", "white-browm", 2, "male", "Mauz"))
+    myCats.append(defineCat("Moritz", "white-brown", 2, "Male", "Mauz"))
     # Second cat
     myCats.append(defineCat("James", "black", 5, "male", ""))
 
