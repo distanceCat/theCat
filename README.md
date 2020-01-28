@@ -1,2 +1,2 @@
 # theCat
-First steps on four paws (in oython)
+First steps on four paws (in python)
