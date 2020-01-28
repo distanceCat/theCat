@@ -1,18 +1,24 @@
 import cat
 
 
-if __name__ == '__main__':
-    myCat = cat.cat()
-    myCat.setName("Moritz")
-    myCat.setColor("white-brown")
-    myCat.setAge(2)
-    print(myCat.getCatDescription())
-    myCat.addSound("Mauz")
-    print(myCat.makeSound())
+def defineCat(name, color, age, extrasound):
+    aCat = cat.cat()
+    aCat.setName(name)
+    aCat.setColor(color)
+    aCat.setAge(age)
+    if extrasound != "":
+        aCat.addSound(extrasound)
+    return aCat
 
-    mySecondCat = cat.cat()
-    mySecondCat.setName("James")
-    mySecondCat.setColor("black")
-    mySecondCat.setAge(5)
+
+if __name__ == '__main__':
+    # First cat
+    myCat = defineCat("Moritz", "white-browm", 2, "Mauz")
+    print(myCat.getCatDescription())
+    print(myCat.getName() + " is currently " + myCat.getCurrentActivity())
+    print(myCat.makeSound())
+    # second cat
+    mySecondCat = defineCat("James", "black", 5, "")
     print(mySecondCat.getCatDescription())
+    print(mySecondCat.getName() + " is currently " + mySecondCat.getCurrentActivity())
     print(mySecondCat.makeSound())

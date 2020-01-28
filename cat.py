@@ -6,12 +6,9 @@ class cat:
         self.__age = 0
         self.__sounds = ["Miau", "Schnurr", "Brrr", "Mau", "Krrr"]
         self.__color = "unknown"
+        self.__activities = ["sleeping", "playing around", "eating", "cleaning myself", "exploring my hood", "sleeping"]
 
     def makeSound(self):
-        """
-
-        :rtype: object
-        """
         aRandomNumber = random.randint(0, len(self.__sounds) - 1)
         return self.__sounds[aRandomNumber]
 
@@ -38,3 +35,7 @@ class cat:
 
     def getCatDescription(self):
         return ("%s is a %s cat of %s years" % (self.__name, self.__color, self.__age))
+
+    def getCurrentActivity(self):
+        aRandomNumber = random.randint(0, len(self.__activities) - 1)
+        return self.__activities[aRandomNumber]
