@@ -1,24 +1,30 @@
 import cat
 
 
-def defineCat(name, color, age, extrasound):
+def defineCat(name, color, age, gender, extrasound):
     aCat = cat.cat()
     aCat.setName(name)
     aCat.setColor(color)
     aCat.setAge(age)
+    aCat.setGender(gender)
     if extrasound != "":
         aCat.addSound(extrasound)
     return aCat
 
 
+def describeCats(theCats):
+    for aCat in theCats:
+        print("###########################################")
+        print(aCat.getCatDescription())
+        print(aCat.getName() + " is currently " + aCat.getCurrentActivity())
+        print(aCat.makeSound())
+
+
 if __name__ == '__main__':
+    myCats = []
     # First cat
-    myCat = defineCat("Moritz", "white-browm", 2, "Mauz")
-    print(myCat.getCatDescription())
-    print(myCat.getName() + " is currently " + myCat.getCurrentActivity())
-    print(myCat.makeSound())
-    # second cat
-    mySecondCat = defineCat("James", "black", 5, "")
-    print(mySecondCat.getCatDescription())
-    print(mySecondCat.getName() + " is currently " + mySecondCat.getCurrentActivity())
-    print(mySecondCat.makeSound())
+    myCats.append(defineCat("Moritz", "white-browm", 2, "male", "Mauz"))
+    # Second cat
+    myCats.append(defineCat("James", "black", 5, "male", ""))
+
+    describeCats(myCats)
