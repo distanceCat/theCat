@@ -1,8 +1,10 @@
-import cat
+import Cat
+import CatGui
+import CatController
 
 
 def defineCat(name, color, age, gender, extrasound):
-    aCat = cat.cat()
+    aCat = Cat.Cat()
     aCat.setName(name)
     aCat.setColor(color)
     aCat.setAge(age)
@@ -21,10 +23,12 @@ def describeCats(theCats):
 
 
 if __name__ == '__main__':
-    myCats = []
+    # myCats = []
     # First cat
-    myCats.append(defineCat("Moritz", "white-brown", 2, "Male", "Mauz"))
+    # myCats.append(defineCat("Moritz", "white-brown", 2, "Male", "Mauz"))
     # Second cat
-    myCats.append(defineCat("James", "black", 5, "male", ""))
+    # myCats.append(defineCat("James", "black", 5, "male", ""))
 
-    describeCats(myCats)
+    # describeCats(myCats)
+    CatController.CatController()
+    CatGui.CatGui()
