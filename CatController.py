@@ -17,10 +17,19 @@ class CatController:
         self.theCats.append(aCat)
 
     def describeCatsAsText(self):
-        returnString = ""
+        returnString = "###########################################" + "\n"
         for aCat in self.theCats:
             returnString = returnString + (aCat.getCatDescription()) + "\n"
             returnString = returnString + (aCat.getName() + " is currently " + aCat.getCurrentActivity()) + "\n"
             returnString = returnString + aCat.makeSound() + "\n"
             returnString = returnString + "###########################################" + "\n"
         return returnString
+
+    def isNameRedundant(self, name):
+        for aCat in self.theCats:
+            if aCat.getName() == name:
+                return True
+        return False
+
+    def getNumberOfCats(self):
+        return len(self.theCats)

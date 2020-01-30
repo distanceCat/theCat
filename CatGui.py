@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+
 import CatController
 
 
@@ -16,6 +18,7 @@ class CatGui:
         self.colorValue = StringVar()
         self.genderValue = StringVar()
         self.ageValue = IntVar()
+        self.ageValue.set(-1)
         self.extraValue = StringVar()
         self.controller = CatController.CatController()
         # default window settings
@@ -24,28 +27,62 @@ class CatGui:
 
     def button_save(self):
         # name, color, age, gender, extrasound
-        self.controller.defineCat(
-            self.nameValue.get(),
-            self.colorValue.get(),
-            self.ageValue.get(),
-            self.genderValue.get(),
-            self.extraValue.get(),
-        )
-        print(self.controller.describeCatsAsText())
+        if not (self.nameValue.get() == ""):
+            if self.checkCorrectEntries():
+                self.controller.defineCat(
+                    self.nameValue.get(),
+                    self.colorValue.get(),
+                    self.ageValue.get(),
+                    self.genderValue.get(),
+                    self.extraValue.get(),
+                )
+        if (self.controller.getNumberOfCats() > 0):
+            print(self.controller.describeCatsAsText())
+            self.creatorFrame.destroy()
+            descriptionFrame = Frame(self.fenster, width=self.fenster.winfo_width(), height=self.fenster.winfo_height())
+            descriptionLabel = Label(descriptionFrame, text=self.controller.describeCatsAsText(),
+                                     width=self.fenster.winfo_width() - 5,
+                                     height=self.fenster.winfo_height() - 5,
+                                     bg="white", padx=10, pady=10)
+            descriptionLabel.pack()
+            descriptionFrame.pack()
+        else:
+            messagebox.showinfo("Error", "Please provide a cat first!")
 
     def button_next(self):
-        self.controller.defineCat(
-            self.nameValue.get(),
-            self.colorValue.get(),
-            self.ageValue.get(),
-            self.genderValue.get(),
-            self.extraValue.get(),
-        )
-        self.nameValue.set(""),
-        self.colorValue.set(""),
-        self.ageValue.set(0),
-        self.genderValue.set("blah"),
-        self.extraValue.set(""),
+        if self.checkCorrectEntries():
+            self.controller.defineCat(
+                self.nameValue.get(),
+                self.colorValue.get(),
+                self.ageValue.get(),
+                self.genderValue.get(),
+                self.extraValue.get(),
+            )
+        self.resetValues()
+
+    def checkCorrectEntries(self):
+        if (self.nameValue.get() == "") and (self.ageValue.get() == -1):
+            messagebox.showinfo("Error", "Please provide a name and an age!")
+            return False
+        elif self.nameValue.get() == "":
+            messagebox.showinfo("Error", "Please provide a name")
+            return False
+        elif self.ageValue.get() == -1:
+            messagebox.showinfo("Error", "Please provide an age")
+            return False
+        elif self.controller.isNameRedundant(self.nameValue.get()):
+            messagebox.showinfo("Error", self.nameValue.get() + " already exists")
+            self.resetValues()
+            return False
+        else:
+            return True
+
+    def resetValues(self):
+        self.nameValue.set("")
+        self.colorValue.set("")
+        self.ageValue.set(-1)
+        self.genderValue.set("blah")
+        self.extraValue.set("")
 
     def createCatConfigurator(self, frame):
         self.genderValue.set("blah")
@@ -86,9 +123,6 @@ class CatGui:
         radioCatGenderMale.grid(row=5, column=1)
         radioCatGenderFemale.grid(row=6, column=1)
         radioCatGenderUnknown.grid(row=7, column=1)
-        radioCatGenderMale.deselect()
-        radioCatGenderFemale.deselect()
-        radioCatGenderUnknown.deselect()
         # entryCatGender.grid(row=5, column=1)
         labelCatExtrasound.grid(row=8, column=0)
         entryCatExtrasound.grid(row=8, column=1)
