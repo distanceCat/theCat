@@ -1,12 +1,15 @@
 import random
-class cat:
+
+
+class Cat:
 
     def __init__(self):
         self.__name = "unknown"
         self.__age = 0
         self.__sounds = ["Miau", "Schnurr", "Brrr", "Mau", "Krrr"]
         self.__color = "unknown"
-        self.__activities = ["sleeping", "playing around", "eating", "cleaning myself", "exploring my hood", "sleeping"]
+        self.__activities = ["sleeping", "playing around", "eating", "cleaning itself", "exploring the hood",
+                             "sleeping"]
         self.__gender = "unknown gender"
 
     def makeSound(self):
